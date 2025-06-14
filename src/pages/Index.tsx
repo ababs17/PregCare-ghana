@@ -1,3 +1,4 @@
+
 import { Heart, Baby, Calendar, Shield, User, LogOut } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,17 @@ const Index = () => {
         variant: "destructive",
       });
     }
+  };
+
+  // Extract first name from user metadata
+  const getFirstName = () => {
+    if (!user) return '';
+    const fullName = user.user_metadata?.full_name;
+    if (fullName) {
+      return fullName.split(' ')[0];
+    }
+    // Fallback to email prefix if no full name
+    return user.email?.split('@')[0] || '';
   };
 
   if (loading) {
@@ -87,7 +99,7 @@ const Index = () => {
                       <User className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-sm text-gray-700">
-                      {user.user_metadata?.full_name || user.email}
+                      {getFirstName()}
                     </span>
                   </div>
                   <Button 
