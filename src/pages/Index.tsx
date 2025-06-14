@@ -187,7 +187,7 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <Link to="/cycle-tracking">
+              <Link to="/pregnancy-care">
                 <Button className="bg-pink-600 hover:bg-pink-700 text-white font-semibold w-full">
                   Track Pregnancy
                 </Button>
@@ -207,7 +207,7 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <Link to="/cycle-tracking">
+              <Link to="/health-monitoring">
                 <Button className="bg-green-600 hover:bg-green-700 text-white font-semibold w-full">
                   Monitor Health
                 </Button>

@@ -11,6 +11,8 @@ import SignUp from "./pages/SignUp";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
 import CycleTracking from "./pages/CycleTracking";
+import HealthMonitoring from "./pages/HealthMonitoring";
+import PregnancyCare from "./pages/PregnancyCare";
 import EmergencyContacts from "./pages/EmergencyContacts";
 import Communities from "./pages/Communities";
 import NotFound from "./pages/NotFound";
@@ -31,6 +33,8 @@ const App: React.FC = () => {
               <Route path="/auth" element={<Auth />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/cycle-tracking" element={<CycleTracking />} />
+              <Route path="/health-monitoring" element={<HealthMonitoring />} />
+              <Route path="/pregnancy-care" element={<PregnancyCare />} />
               <Route path="/emergency-contacts" element={<EmergencyContacts />} />
               <Route path="/communities" element={<Communities />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
