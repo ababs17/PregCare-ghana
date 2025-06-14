@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, Bell, Phone, FileText, Hospital, Heart, Baby, Users, Shield } from 'lucide-react';
+import { Calendar, User, Bell, Phone, FileText, Hospital, Heart, Baby, Users, Shield, ArrowRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Link } from 'react-router-dom';
 
@@ -181,6 +181,111 @@ const Index = () => {
               </CardHeader>
             </Card>
           ))}
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Cycle Tracking */}
+          <Link to="/cycle-tracking" className="group">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-pink-100 hover:border-pink-300 transition-all duration-300 group-hover:transform group-hover:scale-105">
+              <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-purple-500 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg transition-shadow">
+                <Calendar className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">Cycle Tracking</h3>
+              <p className="text-gray-600 mb-4">
+                Track your menstrual cycle, ovulation, and fertility with WHO-supported insights
+              </p>
+              <div className="flex items-center text-pink-600 font-medium">
+                <span>Start tracking</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
+
+          {/* Pregnancy Journey */}
+          <Link to="/pregnancy-journey" className="group">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-purple-100 hover:border-purple-300 transition-all duration-300 group-hover:transform group-hover:scale-105">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-green-500 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg transition-shadow">
+                <Baby className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">Pregnancy Journey</h3>
+              <p className="text-gray-600 mb-4">
+                Support throughout your sacred journey
+              </p>
+              <div className="flex items-center text-purple-600 font-medium">
+                <span>Start tracking</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
+
+          {/* Health Monitoring */}
+          <Link to="/health-monitoring" className="group">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-green-100 hover:border-green-300 transition-all duration-300 group-hover:transform group-hover:scale-105">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg transition-shadow">
+                <Heart className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">Health Monitoring</h3>
+              <p className="text-gray-600 mb-4">
+                Track vital signs and wellness indicators
+              </p>
+              <div className="flex items-center text-green-600 font-medium">
+                <span>Start tracking</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
+
+          {/* Emergency Contacts */}
+          <Link to="/emergency-contacts" className="group">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-100 hover:border-blue-300 transition-all duration-300 group-hover:transform group-hover:scale-105">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-orange-500 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg transition-shadow">
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">Emergency Contacts</h3>
+              <p className="text-gray-600 mb-4">
+                Your healthcare providers and family
+              </p>
+              <div className="flex items-center text-blue-600 font-medium">
+                <span>Start tracking</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
+
+          {/* Educational Content */}
+          <Link to="/educational-content" className="group">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-orange-100 hover:border-orange-300 transition-all duration-300 group-hover:transform group-hover:scale-105">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-teal-500 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg transition-shadow">
+                <FileText className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">Educational Content</h3>
+              <p className="text-gray-600 mb-4">
+                Learn about maternal health in Twi and English
+              </p>
+              <div className="flex items-center text-orange-600 font-medium">
+                <span>Start tracking</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
+
+          {/* Community Support */}
+          <Link to="/community-support" className="group">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border-2 border-teal-100 hover:border-teal-300 transition-all duration-300 group-hover:transform group-hover:scale-105">
+              <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg transition-shadow">
+                <Users className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">Community Support</h3>
+              <p className="text-gray-600 mb-4">
+                Connect with other mothers in your region
+              </p>
+              <div className="flex items-center text-teal-600 font-medium">
+                <span>Start tracking</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
         </div>
 
         {/* Enhanced Quick Actions with Cultural Context */}
