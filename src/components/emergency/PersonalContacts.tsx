@@ -86,10 +86,14 @@ const PersonalContacts = () => {
 
     try {
       const contactData = {
-        ...values,
         user_id: user.id,
+        name: values.name,
+        relationship: values.relationship,
+        phone: values.phone,
         email: values.email || null,
         address: values.address || null,
+        is_primary: values.is_primary,
+        priority: values.priority,
       };
 
       if (editingContact) {

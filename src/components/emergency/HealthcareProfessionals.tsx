@@ -88,12 +88,15 @@ const HealthcareProfessionals = () => {
 
     try {
       const professionalData = {
-        ...values,
         user_id: user.id,
+        name: values.name,
+        specialization: values.specialization,
+        phone: values.phone,
         email: values.email || null,
         emergency_phone: values.emergency_phone || null,
         license_number: values.license_number || null,
         notes: values.notes || null,
+        is_primary: values.is_primary,
       };
 
       if (editingProfessional) {
