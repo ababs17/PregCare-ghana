@@ -41,8 +41,8 @@ const PregnancyTracking = () => {
     { date: '2024-01-09', folateIntake: true, ironIntake: false, calciumIntake: true }
   ]);
 
-  const calculateWeightGain = () => {
-    if (!currentWeight || !prePregnancyWeight) return 0;
+  const calculateWeightGain = (): string => {
+    if (!currentWeight || !prePregnancyWeight) return '0.0';
     return (parseFloat(currentWeight) - parseFloat(prePregnancyWeight)).toFixed(1);
   };
 
