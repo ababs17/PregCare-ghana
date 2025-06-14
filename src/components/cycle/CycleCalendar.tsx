@@ -14,21 +14,7 @@ const CycleCalendar = () => {
   
   const cycleData = calculateCycleData(lastPeriodStart, averageCycleLength);
 
-  const getCellStyle = (date: Date) => {
-    const dayType = getDayType(date, cycleData);
-    switch (dayType) {
-      case 'period':
-        return 'bg-red-100 text-red-800 border-red-300';
-      case 'fertile':
-        return 'bg-green-100 text-green-800 border-green-300';
-      case 'ovulation':
-        return 'bg-purple-100 text-purple-800 border-purple-300';
-      default:
-        return '';
-    }
-  };
-
-  const getDayType = (date: Date, cycleData: any) => {
+  const getDayType = (date: Date) => {
     const today = new Date();
     const daysDiff = Math.floor((date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
     
@@ -36,6 +22,18 @@ const CycleCalendar = () => {
     if (Math.abs(daysDiff - 14) <= 2) return 'ovulation';
     if (Math.abs(daysDiff - 14) <= 5) return 'fertile';
     return 'normal';
+  };
+
+  const modifiers = {
+    period: (date: Date) => getDayType(date) === 'period',
+    fertile: (date: Date) => getDayType(date) === 'fertile',
+    ovulation: (date: Date) => getDayType(date) === 'ovulation',
+  };
+
+  const modifiersClassNames = {
+    period: 'bg-red-100 text-red-800 border-red-300',
+    fertile: 'bg-green-100 text-green-800 border-green-300',
+    ovulation: 'bg-purple-100 text-purple-800 border-purple-300',
   };
 
   return (
@@ -57,9 +55,8 @@ const CycleCalendar = () => {
             selected={selectedDate}
             onSelect={setSelectedDate}
             className="rounded-md border"
-            classNames={{
-              day: (date) => getCellStyle(date),
-            }}
+            modifiers={modifiers}
+            modifiersClassNames={modifiersClassNames}
           />
           
           {/* Legend */}
