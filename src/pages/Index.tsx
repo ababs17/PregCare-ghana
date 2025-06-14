@@ -50,7 +50,7 @@ const Index = () => {
         </div>
       </div>
     );
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50 relative overflow-hidden">
@@ -233,8 +233,10 @@ const Index = () => {
               <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🏥</span>
               </div>
-              <h4 className="font-bold text-gray-800 mb-2">Local Healthcare</h4>
-              <p className="text-gray-600 text-sm">Integrated with Ghanaian healthcare practices and local medical guidelines</p>
+              <Link to="/emergency-contacts">
+                <h4 className="font-bold text-gray-800 mb-2 hover:text-red-600 transition-colors cursor-pointer">Local Healthcare</h4>
+              </Link>
+              <p className="text-gray-600 text-sm">Find nearby hospitals and healthcare facilities with GPS location and direct contact</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
