@@ -72,7 +72,7 @@ const HealthChatbot = () => {
       console.error('Error sending message:', error);
       toast({
         title: "Error",
-        description: "Failed to get response from health assistant. Please try again.",
+        description: "Failed to get response from Nyinsen Boafo. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -122,7 +122,7 @@ const HealthChatbot = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Bot className="h-5 w-5" />
-              <CardTitle className="text-lg">Health Assistant</CardTitle>
+              <CardTitle className="text-lg">Nyinsen Boafo</CardTitle>
             </div>
             <div className="flex items-center space-x-2">
               <Button
@@ -146,8 +146,8 @@ const HealthChatbot = () => {
           </div>
           <p className="text-sm text-purple-100">
             {language === 'english' 
-              ? 'Ask me about maternal health and pregnancy care'
-              : 'Bisaa me nsɛm fa ɔba wo yam ne nyinsɛn ho'
+              ? 'Your maternal health companion - ask me about pregnancy and health'
+              : 'Wo nyinsɛn ne akwahosan boafoɔ - bisaa me nsɛm fa nyinsɛn ne akwahosan ho'
             }
           </p>
         </CardHeader>
@@ -158,8 +158,8 @@ const HealthChatbot = () => {
               <div className="space-y-4">
                 <div className="text-center text-gray-500 mb-4">
                   {language === 'english' 
-                    ? 'Welcome! Ask me anything about maternal health.'
-                    : 'Akwaaba! Bisaa me nsɛm biara fa ɔba wo yam ho.'
+                    ? 'Akwaaba! I am Nyinsen Boafo, your health companion. Ask me anything about maternal health.'
+                    : 'Akwaaba! Me ne Nyinsen Boafo, wo akwahosan boafoɔ. Bisaa me nsɛm biara fa ɔba wo yam ho.'
                   }
                 </div>
                 <div className="space-y-2">
@@ -229,7 +229,7 @@ const HealthChatbot = () => {
                   <div className="flex items-center space-x-2">
                     <Loader2 className="h-4 w-4 animate-spin" />
                     <p className="text-sm text-gray-600">
-                      {language === 'english' ? 'Thinking...' : 'Meredwene...'}
+                      {language === 'english' ? 'Nyinsen Boafo is thinking...' : 'Nyinsen Boafo redwene...'}
                     </p>
                   </div>
                 </div>
@@ -246,8 +246,8 @@ const HealthChatbot = () => {
                 onKeyPress={handleKeyPress}
                 placeholder={
                   language === 'english'
-                    ? 'Ask about your health...'
-                    : 'Bisaa wo akwahosan ho nsɛm...'
+                    ? 'Ask Nyinsen Boafo about your health...'
+                    : 'Bisaa Nyinsen Boafo wo akwahosan ho nsɛm...'
                 }
                 disabled={isLoading}
                 className="flex-1"
