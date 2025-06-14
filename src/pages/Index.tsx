@@ -224,7 +224,9 @@ const Index = () => {
               <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🤝</span>
               </div>
-              <h4 className="font-bold text-gray-800 mb-2">Community Support</h4>
+              <Link to="/communities">
+                <h4 className="font-bold text-gray-800 mb-2 hover:text-yellow-600 transition-colors cursor-pointer">Community Support</h4>
+              </Link>
               <p className="text-gray-600 text-sm">Connect with other mothers and share experiences in a supportive environment</p>
             </div>
             <div className="text-center">

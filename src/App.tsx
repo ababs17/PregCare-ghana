@@ -12,6 +12,7 @@ import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
 import CycleTracking from "./pages/CycleTracking";
 import EmergencyContacts from "./pages/EmergencyContacts";
+import Communities from "./pages/Communities";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App: React.FC = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/cycle-tracking" element={<CycleTracking />} />
               <Route path="/emergency-contacts" element={<EmergencyContacts />} />
+              <Route path="/communities" element={<Communities />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
