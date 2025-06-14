@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,12 +8,13 @@ import HealthcareProfessionals from '../components/emergency/HealthcareProfessio
 import PersonalContacts from '../components/emergency/PersonalContacts';
 import RiskAlerts from '../components/emergency/RiskAlerts';
 import EmergencyActions from '../components/emergency/EmergencyActions';
+import HealthChatbot from '@/components/HealthChatbot';
 
 const EmergencyContacts = () => {
   const [activeTab, setActiveTab] = useState('facilities');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-pink-50 to-purple-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b-4 border-red-500">
         <div className="max-w-6xl mx-auto px-4 py-4">
@@ -94,6 +94,9 @@ const EmergencyContacts = () => {
           {activeTab === 'alerts' && <RiskAlerts />}
         </div>
       </div>
+
+      {/* Add the Health Chatbot */}
+      <HealthChatbot />
     </div>
   );
 };

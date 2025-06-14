@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,12 +8,13 @@ import CycleInsights from '../components/cycle/CycleInsights';
 import LogCycleData from '../components/cycle/LogCycleData';
 import PregnancyTracking from '../components/cycle/PregnancyTracking';
 import HealthMonitoring from '../components/cycle/HealthMonitoring';
+import HealthChatbot from '@/components/HealthChatbot';
 
 const CycleTracking = () => {
   const [activeTab, setActiveTab] = useState('calendar');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b-4 border-pink-400">
         <div className="max-w-6xl mx-auto px-4 py-4">
@@ -104,6 +104,9 @@ const CycleTracking = () => {
           {activeTab === 'health' && <HealthMonitoring />}
         </div>
       </div>
+
+      {/* Add the Health Chatbot */}
+      <HealthChatbot />
     </div>
   );
 };

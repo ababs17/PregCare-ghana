@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import HealthChatbot from '@/components/HealthChatbot';
 
 const Index = () => {
   const { user, loading, signOut } = useAuth();
@@ -249,6 +250,9 @@ const Index = () => {
           </div>
         </div>
       </main>
+
+      {/* Add the Health Chatbot */}
+      <HealthChatbot />
     </div>
   );
 };
