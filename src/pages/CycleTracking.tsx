@@ -2,12 +2,13 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Heart, Plus, ArrowLeft } from 'lucide-react';
+import { Calendar, Heart, Plus, ArrowLeft, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CycleCalendar from '../components/cycle/CycleCalendar';
 import CycleInsights from '../components/cycle/CycleInsights';
 import LogCycleData from '../components/cycle/LogCycleData';
 import PregnancyTracking from '../components/cycle/PregnancyTracking';
+import HealthMonitoring from '../components/cycle/HealthMonitoring';
 
 const CycleTracking = () => {
   const [activeTab, setActiveTab] = useState('calendar');
@@ -38,10 +39,10 @@ const CycleTracking = () => {
 
       {/* Navigation Tabs */}
       <div className="max-w-6xl mx-auto px-4 py-6">
-        <div className="flex space-x-1 bg-white rounded-lg p-1 shadow-sm mb-6">
+        <div className="flex flex-wrap space-x-1 bg-white rounded-lg p-1 shadow-sm mb-6 overflow-x-auto">
           <button
             onClick={() => setActiveTab('calendar')}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+            className={`flex-1 min-w-max py-2 px-4 rounded-md text-sm font-medium transition-colors ${
               activeTab === 'calendar'
                 ? 'bg-pink-500 text-white'
                 : 'text-gray-600 hover:text-gray-800'
@@ -52,7 +53,7 @@ const CycleTracking = () => {
           </button>
           <button
             onClick={() => setActiveTab('insights')}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+            className={`flex-1 min-w-max py-2 px-4 rounded-md text-sm font-medium transition-colors ${
               activeTab === 'insights'
                 ? 'bg-pink-500 text-white'
                 : 'text-gray-600 hover:text-gray-800'
@@ -62,7 +63,7 @@ const CycleTracking = () => {
           </button>
           <button
             onClick={() => setActiveTab('log')}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+            className={`flex-1 min-w-max py-2 px-4 rounded-md text-sm font-medium transition-colors ${
               activeTab === 'log'
                 ? 'bg-pink-500 text-white'
                 : 'text-gray-600 hover:text-gray-800'
@@ -73,13 +74,24 @@ const CycleTracking = () => {
           </button>
           <button
             onClick={() => setActiveTab('pregnancy')}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+            className={`flex-1 min-w-max py-2 px-4 rounded-md text-sm font-medium transition-colors ${
               activeTab === 'pregnancy'
                 ? 'bg-pink-500 text-white'
                 : 'text-gray-600 hover:text-gray-800'
             }`}
           >
             🤱 Pregnancy
+          </button>
+          <button
+            onClick={() => setActiveTab('health')}
+            className={`flex-1 min-w-max py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+              activeTab === 'health'
+                ? 'bg-pink-500 text-white'
+                : 'text-gray-600 hover:text-gray-800'
+            }`}
+          >
+            <Activity className="w-4 h-4 inline mr-2" />
+            Health
           </button>
         </div>
 
@@ -89,6 +101,7 @@ const CycleTracking = () => {
           {activeTab === 'insights' && <CycleInsights />}
           {activeTab === 'log' && <LogCycleData />}
           {activeTab === 'pregnancy' && <PregnancyTracking />}
+          {activeTab === 'health' && <HealthMonitoring />}
         </div>
       </div>
     </div>
