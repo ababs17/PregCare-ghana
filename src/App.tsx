@@ -9,6 +9,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import SignUp from "./pages/SignUp";
 import Auth from "./pages/Auth";
+import Profile from "./pages/Profile";
 import CycleTracking from "./pages/CycleTracking";
 import NotFound from "./pages/NotFound";
 
@@ -26,6 +27,7 @@ const App: React.FC = () => {
               <Route path="/" element={<Index />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/cycle-tracking" element={<CycleTracking />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

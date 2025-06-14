@@ -1,4 +1,3 @@
-
 import { Heart, Baby, Calendar, Shield, User, LogOut } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -72,6 +71,16 @@ const Index = () => {
             <div className="flex items-center space-x-4">
               {user ? (
                 <div className="flex items-center space-x-3">
+                  <Link to="/profile">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="border-purple-300 text-purple-600 hover:bg-purple-50"
+                    >
+                      <User className="w-4 h-4 mr-1" />
+                      Profile
+                    </Button>
+                  </Link>
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
                       <User className="w-4 h-4 text-white" />
