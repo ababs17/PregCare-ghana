@@ -1,9 +1,9 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, Bell, Phone, FileText, Hospital, Heart, Baby, Users, Shield } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -99,6 +99,12 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center space-x-3">
+              <Link to="/signup">
+                <Button variant="outline" size="sm" className="text-yellow-600 border-yellow-300 hover:bg-yellow-50">
+                  <User className="w-4 h-4 mr-1" />
+                  Join Us
+                </Button>
+              </Link>
               <Badge variant="outline" className="bg-green-50 text-green-700 border-green-300 font-medium">
                 <Shield className="w-3 h-3 mr-1" />
                 Protected
