@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { MessageCircle, Send, Bot, User, Globe, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -105,12 +106,27 @@ const HealthChatbot = () => {
   if (!isOpen) {
     return (
       <div className="fixed bottom-6 right-6 z-50">
-        <Button
-          onClick={() => setIsOpen(true)}
-          className="h-14 w-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg"
-        >
-          <MessageCircle className="h-6 w-6" />
-        </Button>
+        <HoverCard>
+          <HoverCardTrigger asChild>
+            <Button
+              onClick={() => setIsOpen(true)}
+              className="h-14 w-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg p-0 overflow-hidden"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=56&h=56&fit=crop&crop=face"
+                alt="Nyinsen Boafo"
+                className="w-full h-full object-cover"
+              />
+            </Button>
+          </HoverCardTrigger>
+          <HoverCardContent className="w-auto p-2" side="left">
+            <div className="flex items-center space-x-2">
+              <Bot className="h-4 w-4 text-purple-600" />
+              <span className="text-sm font-medium">Nyinsen Boafo</span>
+            </div>
+            <p className="text-xs text-gray-600 mt-1">Your health companion</p>
+          </HoverCardContent>
+        </HoverCard>
       </div>
     );
   }
@@ -121,7 +137,13 @@ const HealthChatbot = () => {
         <CardHeader className="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <Bot className="h-5 w-5" />
+              <div className="w-8 h-8 rounded-full overflow-hidden bg-white/20">
+                <img 
+                  src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=32&h=32&fit=crop&crop=face"
+                  alt="Nyinsen Boafo"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardTitle className="text-lg">Nyinsen Boafo</CardTitle>
             </div>
             <div className="flex items-center space-x-2">
@@ -188,8 +210,12 @@ const HealthChatbot = () => {
                 }`}
               >
                 {message.sender === 'bot' && (
-                  <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                    <Bot className="h-4 w-4 text-white" />
+                  <div className="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                    <img 
+                      src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=32&h=32&fit=crop&crop=face"
+                      alt="Nyinsen Boafo"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 )}
                 <div
@@ -222,8 +248,12 @@ const HealthChatbot = () => {
 
             {isLoading && (
               <div className="flex items-start space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                  <Bot className="h-4 w-4 text-white" />
+                <div className="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=32&h=32&fit=crop&crop=face"
+                    alt="Nyinsen Boafo"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="bg-gray-100 p-3 rounded-lg">
                   <div className="flex items-center space-x-2">
