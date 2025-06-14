@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Heart, User, Mail, Calendar, ArrowLeft, Save, Edit } from 'lucide-react';
+import { Heart, User, Mail, Calendar, ArrowLeft, Save, Edit, Phone } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
@@ -16,7 +16,8 @@ interface ProfileData {
   phone?: string;
   age?: number;
   location?: string;
-  emergency_contact?: string;
+  emergency_contact_name?: string;
+  emergency_contact_phone?: string;
   medical_conditions?: string;
 }
 
@@ -32,7 +33,8 @@ const Profile = () => {
     phone: '',
     age: undefined,
     location: '',
-    emergency_contact: '',
+    emergency_contact_name: '',
+    emergency_contact_phone: '',
     medical_conditions: ''
   });
 
@@ -60,13 +62,30 @@ const Profile = () => {
       }
 
       if (data) {
+        // Parse emergency contact if it exists and contains both name and phone
+        let emergencyContactName = '';
+        let emergencyContactPhone = '';
+        
+        if (data.emergency_contact) {
+          // Try to split existing emergency_contact field if it contains both name and phone
+          const parts = data.emergency_contact.split(' - ');
+          if (parts.length >= 2) {
+            emergencyContactName = parts[0];
+            emergencyContactPhone = parts[1];
+          } else {
+            // If it's just one value, assume it's the name
+            emergencyContactName = data.emergency_contact;
+          }
+        }
+
         setProfileData({
           full_name: data.full_name || '',
           email: data.email || user?.email || '',
           phone: data.phone || '',
           age: data.age || undefined,
           location: data.location || '',
-          emergency_contact: data.emergency_contact || '',
+          emergency_contact_name: emergencyContactName,
+          emergency_contact_phone: emergencyContactPhone,
           medical_conditions: data.medical_conditions || ''
         });
       } else {
@@ -98,11 +117,22 @@ const Profile = () => {
     try {
       setIsSaving(true);
       
+      // Combine emergency contact name and phone for storage
+      const emergencyContact = profileData.emergency_contact_name && profileData.emergency_contact_phone
+        ? `${profileData.emergency_contact_name} - ${profileData.emergency_contact_phone}`
+        : profileData.emergency_contact_name || profileData.emergency_contact_phone || '';
+
       const { error } = await supabase
         .from('profiles')
         .upsert({
           id: user.id,
-          ...profileData,
+          full_name: profileData.full_name,
+          email: profileData.email,
+          phone: profileData.phone,
+          age: profileData.age,
+          location: profileData.location,
+          emergency_contact: emergencyContact,
+          medical_conditions: profileData.medical_conditions,
           updated_at: new Date().toISOString()
         });
 
@@ -307,18 +337,36 @@ const Profile = () => {
                 />
               </div>
 
-              <div className="space-y-2 md:col-span-2">
-                <Label htmlFor="emergency_contact" className="text-sm font-semibold text-gray-700">
-                  Emergency Contact
+              <div className="space-y-2">
+                <Label htmlFor="emergency_contact_name" className="text-sm font-semibold text-gray-700 flex items-center">
+                  <User className="w-4 h-4 mr-1 text-red-600" />
+                  Emergency Contact Name
                 </Label>
                 <Input
-                  id="emergency_contact"
-                  name="emergency_contact"
-                  value={profileData.emergency_contact}
+                  id="emergency_contact_name"
+                  name="emergency_contact_name"
+                  value={profileData.emergency_contact_name}
                   onChange={handleInputChange}
                   disabled={!isEditing}
                   className="border-2 border-yellow-200 focus:border-yellow-400 rounded-xl"
-                  placeholder="Name and phone number"
+                  placeholder="Full name of emergency contact"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="emergency_contact_phone" className="text-sm font-semibold text-gray-700 flex items-center">
+                  <Phone className="w-4 h-4 mr-1 text-red-600" />
+                  Emergency Contact Phone
+                </Label>
+                <Input
+                  id="emergency_contact_phone"
+                  name="emergency_contact_phone"
+                  type="tel"
+                  value={profileData.emergency_contact_phone}
+                  onChange={handleInputChange}
+                  disabled={!isEditing}
+                  className="border-2 border-yellow-200 focus:border-yellow-400 rounded-xl"
+                  placeholder="+233 XX XXX XXXX"
                 />
               </div>
 
