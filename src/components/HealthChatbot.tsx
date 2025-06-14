@@ -113,7 +113,7 @@ const HealthChatbot = () => {
               className="h-14 w-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 shadow-lg p-0 overflow-hidden"
             >
               <img 
-                src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=56&h=56&fit=crop&crop=face"
+                src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=56&h=56&fit=crop&crop=face"
                 alt="Nyinsen Boafo"
                 className="w-full h-full object-cover"
               />
@@ -139,7 +139,7 @@ const HealthChatbot = () => {
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 rounded-full overflow-hidden bg-white/20">
                 <img 
-                  src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=32&h=32&fit=crop&crop=face"
+                  src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=32&h=32&fit=crop&crop=face"
                   alt="Nyinsen Boafo"
                   className="w-full h-full object-cover"
                 />
@@ -212,7 +212,7 @@ const HealthChatbot = () => {
                 {message.sender === 'bot' && (
                   <div className="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                     <img 
-                      src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=32&h=32&fit=crop&crop=face"
+                      src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=32&h=32&fit=crop&crop=face"
                       alt="Nyinsen Boafo"
                       className="w-full h-full object-cover"
                     />
@@ -250,7 +250,7 @@ const HealthChatbot = () => {
               <div className="flex items-start space-x-2 mb-4">
                 <div className="w-8 h-8 rounded-full overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                   <img 
-                    src="https://images.unsplash.com/photo-1466442929976-97f336a657be?w=32&h=32&fit=crop&crop=face"
+                    src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=32&h=32&fit=crop&crop=face"
                     alt="Nyinsen Boafo"
                     className="w-full h-full object-cover"
                   />
