@@ -187,9 +187,11 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <Button className="bg-pink-600 hover:bg-pink-700 text-white font-semibold w-full">
-                Track Pregnancy
-              </Button>
+              <Link to="/cycle-tracking">
+                <Button className="bg-pink-600 hover:bg-pink-700 text-white font-semibold w-full">
+                  Track Pregnancy
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -205,9 +207,11 @@ const Index = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <Button className="bg-green-600 hover:bg-green-700 text-white font-semibold w-full">
-                Monitor Health
-              </Button>
+              <Link to="/cycle-tracking">
+                <Button className="bg-green-600 hover:bg-green-700 text-white font-semibold w-full">
+                  Monitor Health
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
