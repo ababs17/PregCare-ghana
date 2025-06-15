@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -16,6 +15,7 @@ import PregnancyCare from "./pages/PregnancyCare";
 import EmergencyContacts from "./pages/EmergencyContacts";
 import Communities from "./pages/Communities";
 import NotFound from "./pages/NotFound";
+import LoadingManager from "@/components/LoadingManager";
 
 const queryClient = new QueryClient();
 
