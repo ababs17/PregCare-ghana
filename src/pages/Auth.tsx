@@ -9,10 +9,13 @@ import { Badge } from "@/components/ui/badge";
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import { signUpSchema, signInSchema } from '@/lib/validation';
+import { z } from 'zod';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -25,19 +28,52 @@ const Auth = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    
+    // Clear validation error for this field
+    if (validationErrors[name]) {
+      setValidationErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
+  const validateForm = (): boolean => {
+    try {
+      if (isSignUp) {
+        signUpSchema.parse(formData);
+      } else {
+        signInSchema.parse(formData);
+      }
+      setValidationErrors({});
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const errors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            errors[err.path[0] as string] = err.message;
+          }
+        });
+        setValidationErrors(errors);
+      }
+      return false;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (isSignUp && formData.password !== formData.confirmPassword) {
+    if (!validateForm()) {
       toast({
-        title: "Password mismatch",
-        description: "Passwords do not match. Please try again.",
+        title: "Validation Error",
+        description: "Please correct the errors in the form.",
         variant: "destructive",
       });
       return;
@@ -79,7 +115,7 @@ const Auth = () => {
     } catch (error: any) {
       toast({
         title: isSignUp ? "Sign up failed" : "Sign in failed",
-        description: error.message || "An unexpected error occurred.",
+        description: "An unexpected error occurred.",
         variant: "destructive",
       });
     } finally {
@@ -97,7 +133,6 @@ const Auth = () => {
         <div className="absolute bottom-40 right-10 w-20 h-20 rounded-full bg-blue-400"></div>
       </div>
 
-      {/* Header */}
       <header className="bg-white shadow-sm border-b-4 border-yellow-400 relative">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -126,9 +161,7 @@ const Auth = () => {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-md mx-auto px-4 py-12 relative z-10">
-        {/* Welcome Section */}
         <div className="mb-8">
           <div className="bg-gradient-to-r from-yellow-400 via-red-500 to-green-600 rounded-3xl p-8 text-white mb-6 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
@@ -146,7 +179,6 @@ const Auth = () => {
           </div>
         </div>
 
-        {/* Auth Form */}
         <Card className="border-2 border-yellow-100 shadow-xl bg-white/90 backdrop-blur-sm">
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-2xl text-gray-800 flex items-center justify-center">
@@ -175,9 +207,14 @@ const Auth = () => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="border-2 border-yellow-200 focus:border-yellow-400 rounded-xl"
+                  className={`border-2 focus:border-yellow-400 rounded-xl ${
+                    validationErrors.email ? 'border-red-400' : 'border-yellow-200'
+                  }`}
                   placeholder="your.email@example.com"
                 />
+                {validationErrors.email && (
+                  <p className="text-sm text-red-600">{validationErrors.email}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -192,9 +229,19 @@ const Auth = () => {
                   required
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="border-2 border-yellow-200 focus:border-yellow-400 rounded-xl"
+                  className={`border-2 focus:border-yellow-400 rounded-xl ${
+                    validationErrors.password ? 'border-red-400' : 'border-yellow-200'
+                  }`}
                   placeholder={isSignUp ? "Create a strong password" : "Enter your password"}
                 />
+                {validationErrors.password && (
+                  <p className="text-sm text-red-600">{validationErrors.password}</p>
+                )}
+                {isSignUp && (
+                  <p className="text-xs text-gray-600">
+                    Password must be at least 8 characters with uppercase, lowercase, number, and special character.
+                  </p>
+                )}
               </div>
 
               {isSignUp && (
@@ -210,9 +257,14 @@ const Auth = () => {
                     required
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
-                    className="border-2 border-yellow-200 focus:border-yellow-400 rounded-xl"
+                    className={`border-2 focus:border-yellow-400 rounded-xl ${
+                      validationErrors.confirmPassword ? 'border-red-400' : 'border-yellow-200'
+                    }`}
                     placeholder="Confirm your password"
                   />
+                  {validationErrors.confirmPassword && (
+                    <p className="text-sm text-red-600">{validationErrors.confirmPassword}</p>
+                  )}
                 </div>
               )}
 
@@ -233,7 +285,11 @@ const Auth = () => {
               <p className="text-gray-600">
                 {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
                 <button
-                  onClick={() => setIsSignUp(!isSignUp)}
+                  onClick={() => {
+                    setIsSignUp(!isSignUp);
+                    setValidationErrors({});
+                    setFormData({ email: '', password: '', confirmPassword: '' });
+                  }}
                   className="text-yellow-600 hover:text-yellow-700 font-semibold underline"
                 >
                   {isSignUp ? 'Sign in here' : 'Create one here'}
@@ -247,7 +303,6 @@ const Auth = () => {
           </CardContent>
         </Card>
 
-        {/* Trust Indicators */}
         <div className="mt-8 text-center">
           <div className="flex justify-center space-x-6 text-sm text-gray-600">
             <div className="flex items-center">
