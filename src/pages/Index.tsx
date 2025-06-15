@@ -1,4 +1,3 @@
-
 import { Heart, Baby, Calendar, Shield, User, LogOut } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import HealthChatbot from '@/components/HealthChatbot';
+import PersonalizedTips from '@/components/PersonalizedTips';
 
 const Index = () => {
   const { user, loading, signOut } = useAuth();
@@ -152,6 +152,13 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        {/* Personalized Daily Tips - Show only for authenticated users */}
+        {user && (
+          <div className="mb-12">
+            <PersonalizedTips />
+          </div>
+        )}
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
